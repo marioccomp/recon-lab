@@ -1,0 +1,10 @@
+{
+    "total_internal": 6,
+    "total_external": 5,
+    "total_results": 7,
+    "matched": 2,
+    "status_mismatch": 1,
+    "value_mismatch": 1,
+    "only_internal": 2,
+    "only_external": 1
+}

@@ -1,0 +1,6 @@
+operation_id,status,reason,internal_amount,external_amount,internal_status,external_status
+OP002,['VALUE_MISMATCH'],['Amount is different between sources'],2500.0,2490.0,SETTLED,SETTLED
+OP003,['STATUS_MISMATCH'],['Status is different between sources'],500.0,500.0,PENDING,SETTLED
+OP005,['ONLY_INTERNAL'],Operation exists only in internal source,1200.0,,SETTLED,
+OP006,['ONLY_INTERNAL'],Operation exists only in internal source,300.0,,SETTLED,
+OP007,['ONLY_EXTERNAL'],Operation exists only in external source,,700.0,,SETTLED
