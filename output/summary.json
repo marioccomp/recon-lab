@@ -1,11 +1,14 @@
 {
-    "total_internal": 6,
-    "total_external": 5,
-    "total_results": 7,
+    "total_internal": 11,
+    "total_external": 11,
+    "total_results": 10,
     "matched": 2,
-    "divergent_records": 5,
-    "status_mismatch": 1,
-    "value_mismatch": 1,
-    "only_internal": 2,
-    "only_external": 1
+    "divergent_records": 8,
+    "status_mismatch": 2,
+    "value_mismatch": 2,
+    "only_internal": 1,
+    "only_external": 1,
+    "duplicated_internal": 2,
+    "duplicated_external": 2,
+    "duplicated_records": 3
 }
