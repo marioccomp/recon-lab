@@ -3,6 +3,7 @@
     "total_external": 5,
     "total_results": 7,
     "matched": 2,
+    "divergent_records": 5,
     "status_mismatch": 1,
     "value_mismatch": 1,
     "only_internal": 2,

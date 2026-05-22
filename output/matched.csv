@@ -1,3 +1,3 @@
-operation_id,status,reason,internal_amount,external_amount,internal_status,external_status
-OP001,['MATCHED'],Operation matched successfully,1000.0,1000.0,SETTLED,SETTLED
-OP004,['MATCHED'],Operation matched successfully,800.0,800.0,SETTLED,SETTLED
+operation_id,status,reason,internal_amount,external_amount,amount_difference,internal_status,external_status,has_difference,difference_count
+OP001,['MATCHED'],Operation matched successfully,1000.0,1000.0,0.0,SETTLED,SETTLED,False,0
+OP004,['MATCHED'],Operation matched successfully,800.0,800.005,0.0,SETTLED,SETTLED,False,0
