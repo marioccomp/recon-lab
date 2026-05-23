@@ -2,6 +2,7 @@ import json
 import pandas as pd
 
 from normalizer import normalize_dataframe
+from validate_csv import validate_csv
 
 AMOUNT_TOLERANCE = 0.01
 
@@ -188,6 +189,9 @@ def verify_errors(row):
 
 def reconcile(internal_df, external_df):
 
+    validate_csv(internal_df)
+    validate_csv(external_df)
+    
     internal_df = normalize_dataframe(internal_df)
     external_df = normalize_dataframe(external_df)
 

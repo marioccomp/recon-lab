@@ -10,6 +10,7 @@ EXTERNAL_FILE = PROJECT_ROOT / "data" / "samples" / "external_sample.csv"
 OUTPUT_DIR = PROJECT_ROOT / "output"
 
 def main():
+
     internal_df, external_df = load_data(INTERNAL_FILE, EXTERNAL_FILE)
 
     result_df = reconcile(internal_df, external_df)

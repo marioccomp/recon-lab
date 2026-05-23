@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 STATUS_MAP = {
     "settled": "SETTLED",
@@ -18,21 +19,29 @@ STATUS_MAP = {
 
 def normalize_operation_id(value):
     if pd.isna(value):
-        return value
+        return None
     
-    return str(value).strip().upper()
+    clean_value = str(value).strip()
+
+    if clean_value == "":
+        return None
+    
+    return clean_value.upper()
 
 def normalize_status(value):
     if pd.isna(value):
-        return value
+        return None
     
     clean_value = str(value).strip().lower()
+
+    if clean_value == "":
+        return None
 
     return STATUS_MAP.get(clean_value, clean_value.upper())
 
 def normalize_amount(value):
     if pd.isna(value):
-        return value
+        return None
     
     if isinstance(value, int) or isinstance(value, float):
         return float(value)
@@ -42,12 +51,17 @@ def normalize_amount(value):
     clean_value = clean_value.replace("R$", "")
     clean_value = clean_value.replace(" ", "")
 
+    clean_value = re.sub(r"[^0-9.,-]", "", clean_value)
+
     if "," in clean_value and "." in clean_value:
         clean_value = clean_value.replace(".", "")
         clean_value = clean_value.replace(",", ".")
     else:
         clean_value = clean_value.replace(",",".")
 
+    if clean_value == "":
+        return None
+    
     return float(clean_value)
 
 def normalize_dataframe(df):
