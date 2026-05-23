@@ -5,8 +5,8 @@ from reconciliation import load_data, reconcile, build_summary, save_outputs
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-INTERNAL_FILE = PROJECT_ROOT / "data" / "internal_transactions.csv"
-EXTERNAL_FILE = PROJECT_ROOT / "data" / "external_transactions.csv"
+INTERNAL_FILE = PROJECT_ROOT / "data" / "samples" /"internal_sample.csv"
+EXTERNAL_FILE = PROJECT_ROOT / "data" / "samples" / "external_sample.csv"
 OUTPUT_DIR = PROJECT_ROOT / "output"
 
 def main():

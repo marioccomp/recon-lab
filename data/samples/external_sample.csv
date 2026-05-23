@@ -1,0 +1,10 @@
+operation_id,amount,status
+OP001,1000.00,liquidada
+OP002,1050.00,settled
+OP003,500.00,settled
+OP006,200.00,settled
+OP007,300.00,pending
+OP008,2500.00,pendente
+OP009,"R$ 1050,00",pending
+OP010,400.00,SETTLED
+OP010,400.00,SETTLED

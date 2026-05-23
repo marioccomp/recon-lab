@@ -1,9 +1,8 @@
 operation_id,status,reason,internal_amount,external_amount,amount_difference,internal_status,external_status,internal_occurrences,external_occurrences,has_difference,difference_count
-OP008,['DUPLICATED_INTERNAL'],['Operation id OP008 appears 2 times in internal source'],100.0,100.0,,SETTLED,SETTLED,2,1,True,1
-OP009,['DUPLICATED_EXTERNAL'],['Operation id OP009 appears 2 times in external source'],200.0,200.0,,SETTLED,SETTLED,1,2,True,1
-OP010,"['DUPLICATED_INTERNAL', 'DUPLICATED_EXTERNAL']","['Operation id OP010 appears 2 times in internal source', 'Operation id OP010 appears 2 times in external source']",400.0,400.0,,SETTLED,SETTLED,2,2,True,2
-OP003,['VALUE_MISMATCH'],['Amount is different between sources'],100.0,90.0,-10.0,SETTLED,SETTLED,1,1,True,1
-OP004,['STATUS_MISMATCH'],['Status is different between sources'],500.0,500.0,0.0,CANCELLED,SETTLED,1,1,True,1
-OP005,"['VALUE_MISMATCH', 'STATUS_MISMATCH']","['Amount is different between sources', 'Status is different between sources']",700.0,750.0,50.0,PENDING,SETTLED,1,1,True,2
-OP006,['ONLY_INTERNAL'],['Operation exists only in internal source'],300.0,,,SETTLED,,1,0,True,1
-OP007,['ONLY_EXTERNAL'],['Operation exists only in external source'],,999.0,,,SETTLED,0,1,True,1
+OP006,['DUPLICATED_INTERNAL'],['Operation id OP006 appears 2 times in internal source'],200.0,200.0,,SETTLED,SETTLED,2,1,True,1
+OP010,['DUPLICATED_EXTERNAL'],['Operation id OP010 appears 2 times in external source'],400.0,400.0,,SETTLED,SETTLED,1,2,True,1
+OP002,['VALUE_MISMATCH'],['Amount is different between sources'],1000.0,1050.0,50.0,SETTLED,SETTLED,1,1,True,1
+OP003,['STATUS_MISMATCH'],['Status is different between sources'],500.0,500.0,0.0,PENDING,SETTLED,1,1,True,1
+OP004,['ONLY_INTERNAL'],['Operation exists only in internal source'],750.0,,,CANCELLED,,1,0,True,1
+OP007,['ONLY_EXTERNAL'],['Operation exists only in external source'],,300.0,,,PENDING,0,1,True,1
+OP008,"['VALUE_MISMATCH', 'STATUS_MISMATCH']","['Amount is different between sources', 'Status is different between sources']",1000.5,2500.0,1499.5,SETTLED,PENDING,1,1,True,2
