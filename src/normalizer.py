@@ -64,16 +64,34 @@ def normalize_amount(value):
     
     return float(clean_value)
 
+def normalize_date(value):
+    if pd.isna(value):
+        return None
+    
+    value = str(value).strip()
+
+    if value == "":
+        return None
+    
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", value):
+        return value
+    
+    parsed_date = pd.to_datetime(value, dayfirst=True, errors="coerce")
+
+    if pd.isna(parsed_date):
+        return None
+    
+    return parsed_date.strftime("%Y-%m-%d")
+
 def normalize_dataframe(df):
     normalized_df = df.copy()
 
-    if "operation_id" in normalized_df.columns:
-        normalized_df["operation_id"] = normalized_df["operation_id"].apply(normalize_operation_id)
-    
-    if "status" in normalized_df.columns:
-        normalized_df["status"] = normalized_df["status"].apply(normalize_status)
+    normalized_df["operation_id"] = normalized_df["operation_id"].apply(normalize_operation_id)
 
-    if "amount" in normalized_df.columns:
-        normalized_df["amount"] = normalized_df["amount"].apply(normalize_amount)
+    normalized_df["status"] = normalized_df["status"].apply(normalize_status)
+
+    normalized_df["amount"] = normalized_df["amount"].apply(normalize_amount)
+
+    normalized_df["date"] = normalized_df["date"].apply(normalize_date)
 
     return normalized_df

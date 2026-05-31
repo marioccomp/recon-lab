@@ -3,8 +3,6 @@ from pathlib import Path
 
 import pandas as pd
 
-sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
-
 from normalizer import normalize_status, normalize_amount
 from reconciliation import reconcile
 

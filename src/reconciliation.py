@@ -1,4 +1,5 @@
 import json
+import datetime
 import pandas as pd
 
 from normalizer import normalize_dataframe
@@ -114,6 +115,8 @@ def verify_errors(row):
             "amount_difference": None,
             "internal_status": row.get("status_internal"),
             "external_status": None,
+            "internal_date": row.get("date_internal"),
+            "external_date": row.get("date_external"),
             "has_difference": True,
             "difference_count": 1,
             "internal_occurrences": 1,
@@ -129,6 +132,8 @@ def verify_errors(row):
             "amount_difference": None,
             "internal_status": None,
             "external_status": row.get("status_external"),
+            "internal_date": row.get("date_internal"),
+            "external_date": row.get("date_external"),
             "has_difference": True,
             "difference_count": 1,
             "internal_occurrences": 0,
@@ -139,6 +144,8 @@ def verify_errors(row):
     amount_external = row["amount_external"]
     status_internal = row["status_internal"]
     status_external = row["status_external"]
+    date_internal = row["date_internal"]
+    date_external = row["date_external"]
 
     status = []
     reasons = []
@@ -153,6 +160,10 @@ def verify_errors(row):
         status.append("STATUS_MISMATCH")
         reasons.append("Status is different between sources")
 
+    if date_internal != date_external:
+        status.append("DATE_MISMATCH")
+        reasons.append("Date is different between sources")
+
 
 
     if len(status) == 0:
@@ -165,6 +176,8 @@ def verify_errors(row):
         "amount_difference": amount_difference,
         "internal_status": status_internal,
         "external_status": status_external,
+        "internal_date": date_internal,
+        "external_date": date_external,
         "has_difference": False,
         "difference_count": 0,
         "internal_occurrences": 1,
@@ -181,6 +194,8 @@ def verify_errors(row):
         "amount_difference": amount_difference,
         "internal_status": status_internal,
         "external_status": status_external,
+        "internal_date": date_internal,
+        "external_date": date_external,
         "has_difference": True,
         "difference_count": len(status),
         "internal_occurrences": 1,
@@ -188,6 +203,7 @@ def verify_errors(row):
     }
 
 def reconcile(internal_df, external_df):
+
 
     validate_csv(internal_df)
     validate_csv(external_df)
@@ -225,13 +241,16 @@ def reconcile(internal_df, external_df):
     for _, row in merged_df.iterrows():
         results.append(verify_errors(row))
 
-    return pd.DataFrame(results)   
+    
+
+    return pd.DataFrame(results)
 
 
 
 def build_summary(internal_df, external_df, result_df):
     status_mismatch = int(result_df["status"].apply(lambda status: "STATUS_MISMATCH" in status).sum())
     value_mismatch = int(result_df["status"].apply(lambda status: "VALUE_MISMATCH" in status).sum())
+    date_mismatch = int(result_df["status"].apply(lambda status: "DATE_MISMATCH" in status).sum())
     matched = int(result_df["status"].apply(lambda status: "MATCHED" in status).sum())
     only_internal = int(result_df["status"].apply(lambda status: "ONLY_INTERNAL" in status).sum())
     only_external = int(result_df["status"].apply(lambda status: "ONLY_EXTERNAL" in status).sum())
@@ -257,6 +276,7 @@ def build_summary(internal_df, external_df, result_df):
         "divergent_records": divergent_records,
         "status_mismatch": status_mismatch,
         "value_mismatch": value_mismatch,
+        "date_mismatch": date_mismatch,
         "only_internal": only_internal,
         "only_external": only_external,
         "duplicated_internal": duplicated_internal,
@@ -267,7 +287,12 @@ def build_summary(internal_df, external_df, result_df):
     return summary
 
 def save_outputs(result_df, summary, output_dir):
-    output_dir.mkdir(exist_ok=True)
+
+    run_id = summary["run"]["run_id"]
+
+    output_dir = output_dir / "runs" / run_id
+
+    output_dir.mkdir(exist_ok=True, parents=True)
 
     differences_df = result_df[result_df["has_difference"] == True]
 
