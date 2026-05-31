@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: reconlab-postgres
+    environment:
+      POSTGRES_DB: reconlab
+      POSTGRES_USER: reconlab
+      POSTGRES_PASSWORD: reconlab
+    ports:
+    - "5432:5432"
+    volumes:
+      - reconlab_postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  reconlab_postgres_data:

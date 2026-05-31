@@ -305,3 +305,5 @@ def save_outputs(result_df, summary, output_dir):
     with open(output_dir / "summary.json", "w", encoding="utf-8") as file:
         json.dump(summary, file, indent=4, ensure_ascii=False)
 
+    return output_dir
+

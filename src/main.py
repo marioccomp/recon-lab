@@ -3,6 +3,7 @@ from pathlib import Path
 from datetime import datetime
 
 from reconciliation import load_data, reconcile, build_summary, save_outputs
+from reconciliation_repository import save_reconciliation_to_database
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
@@ -40,6 +41,8 @@ def main():
     }
 
     save_outputs(result_df, summary, OUTPUT_DIR)
+
+    save_reconciliation_to_database(run, summary, result_df)
 
     print("Reconciliação finalizada.")
     print(f"Run ID: {run_id}")

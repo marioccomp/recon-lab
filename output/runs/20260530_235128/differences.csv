@@ -1,0 +1,10 @@
+operation_id,status,reason,internal_amount,external_amount,amount_difference,internal_status,external_status,internal_occurrences,external_occurrences,has_difference,difference_count,internal_date,external_date
+OP006,['DUPLICATED_INTERNAL'],['Operation id OP006 appears 2 times in internal source'],300.0,,,SETTLED,,2,0,True,1,,
+OP010,['DUPLICATED_EXTERNAL'],['Operation id OP010 appears 2 times in external source'],,700.0,,,SETTLED,0,2,True,1,,
+OP002,['VALUE_MISMATCH'],['Amount is different between sources'],1500.0,1550.0,50.0,SETTLED,SETTLED,1,1,True,1,2026-06-10,2026-06-10
+OP003,['STATUS_MISMATCH'],['Status is different between sources'],500.0,500.0,0.0,PENDING,SETTLED,1,1,True,1,2026-06-10,2026-06-10
+OP004,['ONLY_INTERNAL'],['Operation exists only in internal source'],750.0,,,SETTLED,,1,0,True,1,2026-06-10,
+OP005,['ONLY_EXTERNAL'],['Operation exists only in external source'],,999.0,,,SETTLED,0,1,True,1,,2026-06-10
+OP007,['ONLY_EXTERNAL'],['Operation exists only in external source'],,450.0,,,PENDING,0,1,True,1,,2026-06-10
+OP008,"['VALUE_MISMATCH', 'STATUS_MISMATCH']","['Amount is different between sources', 'Status is different between sources']",2000.0,2100.0,100.0,PENDING,SETTLED,1,1,True,2,2026-06-10,2026-06-10
+OP011,['DATE_MISMATCH'],['Date is different between sources'],900.0,900.0,0.0,SETTLED,SETTLED,1,1,True,1,2026-06-10,2026-06-11
